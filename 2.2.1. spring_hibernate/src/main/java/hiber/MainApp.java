@@ -20,7 +20,7 @@ public class MainApp {
       CarService carService = context.getBean(CarService.class);
 
       Car carVesta = new Car("Vesta", 33);
-      Car carLogan = new Car("Logan", 22);
+      Car carLogan = new Car("Logan", 33);
       Car carSX4 = new Car("SX4", 44);
 
       carService.add(carVesta);
@@ -30,24 +30,15 @@ public class MainApp {
       userService.add(new User("User1", "Lastname1", "user1@mail.ru", carVesta));
       userService.add(new User("User2", "Lastname2", "user2@mail.ru", carLogan));
       userService.add(new User("User3", "Lastname3", "user3@mail.ru", carSX4));
-//      userService.add(new User("User4", "Lastname4", "user4@mail.ru"));
 
       List<User> users = userService.listUsers();
+      System.out.println("Список введенных пользователей:");
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
-         System.out.println("Car = "+user.getCar());
-         System.out.println();
+         System.out.println(user);
       }
-
-//      List<Car> cars = carService.listCars();
-//      for (Car car : cars) {
-//         System.out.println("Id = "+car.getId());
-//         System.out.println("Model = "+car.getModel());
-//         System.out.println();
-//      }
+      System.out.println();
+      System.out.println("Поиск пользователя по машине модели 'Logan' и серии '33':");
+      System.out.println(userService.find("Logan", 33));
 
       context.close();
    }
