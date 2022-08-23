@@ -4,7 +4,6 @@ import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
 import hiber.service.CarService;
-import hiber.service.CarServiceImp;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -23,13 +22,13 @@ public class MainApp {
       Car carLogan = new Car("Logan", 33);
       Car carSX4 = new Car("SX4", 44);
 
-      carService.add(carVesta);
-      carService.add(carLogan);
-      carService.add(carSX4);
+      carService.addCar(carVesta);
+      carService.addCar(carLogan);
+      carService.addCar(carSX4);
 
-      userService.add(new User("User1", "Lastname1", "user1@mail.ru", carVesta));
-      userService.add(new User("User2", "Lastname2", "user2@mail.ru", carLogan));
-      userService.add(new User("User3", "Lastname3", "user3@mail.ru", carSX4));
+      userService.addUser(new User("User1", "Lastname1", "user1@mail.ru", carVesta));
+      userService.addUser(new User("User2", "Lastname2", "user2@mail.ru", carLogan));
+      userService.addUser(new User("User3", "Lastname3", "user3@mail.ru", carSX4));
 
       List<User> users = userService.listUsers();
       System.out.println("Список введенных пользователей:");
@@ -38,7 +37,7 @@ public class MainApp {
       }
       System.out.println();
       System.out.println("Поиск пользователя по машине модели 'Logan' и серии '33':");
-      System.out.println(userService.find("Logan", 33));
+      System.out.println(userService.findUserByCar("Logan", 33));
 
       context.close();
    }

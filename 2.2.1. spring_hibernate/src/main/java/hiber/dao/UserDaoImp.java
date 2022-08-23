@@ -10,16 +10,19 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-
-   @Autowired
    private SessionFactory sessionFactory;
 
+   @Autowired
+   public UserDaoImp(SessionFactory sessionFactory) {
+      this.sessionFactory = sessionFactory;
+   }
+
    @Override
-   public void add(User user) {
+   public void addUser(User user) {
       sessionFactory.getCurrentSession().save(user);
    }
 
-   public User find(String model, int series) {
+   public User findUserByCar(String model, int series) {
       TypedQuery<User> query=sessionFactory.getCurrentSession()
               .createQuery("select U from User U inner join U.car as C " +
                       "with C.series = :paramSeries and C.model = :paramModel ");
